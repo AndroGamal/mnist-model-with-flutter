@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
       try {
         var interpreter = await tfl.Interpreter.fromAsset("model.tflite");
         var input = [20.0];
-        var output = List.filled(10 * 1, 0).reshape([10, 1]);
+        var output = List.filled(1 * 1, 0).reshape([1, 1]);
         interpreter.run(input, output);
         interpreter.close();
         setState(() {
@@ -96,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }.call();
   }
 
+  dynamic method;
   String text = "test";
   @override
   Widget build(BuildContext context) {
@@ -107,10 +108,36 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            RadioListTile(
+                title: Text("prediction numder"),
+                value: model,
+                groupValue: method,
+                onChanged: (va) {
+                  setState(() {
+                    method = va;
+                  });
+                }),
+            RadioListTile(
+                title: Text("mnist model"),
+                value: convolution,
+                groupValue: method,
+                onChanged: (va) {
+                  setState(() {
+                    method = va;
+                  });
+                }),
+            RadioListTile(
+                title: Text("humman or hourse"),
+                value: HmorHs,
+                groupValue: method,
+                onChanged: (va) {
+                  setState(() {
+                    method = va;
+                  });
+                }),
             Text(text),
             FloatingActionButton(onPressed: () {
-              // convolution();
-              HmorHs();
+              method();
             })
           ],
         ),
