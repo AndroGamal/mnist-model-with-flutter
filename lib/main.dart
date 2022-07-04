@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
               model: "assets/human_or_horse.tflite",
               labels: "assets/human_or_horse.txt");
           var output = await Tflite.runModelOnImage(
-              path: result.files.single.path ?? "", numResults: 2);
+              path: result.files.single.path ?? "", numResults: 3);
           setState(() {
             text = output![0]['label'].toString();
           });
