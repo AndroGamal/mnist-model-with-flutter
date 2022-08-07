@@ -30,7 +30,7 @@ class callback(tf.keras.callbacks.Callback):
             self.model.optimizer.optimizer_specs[0]["optimizer"].lr=0.005/(epoch)
             self.model.optimizer.optimizer_specs[1]["optimizer"].lr=self.model.optimizer.optimizer_specs[1]["optimizer"].lr-0.0001
             self.model.optimizer.optimizer_specs[2]["optimizer"].lr=1e-09 * 1000 ** ((1000-epoch)/1000)
-        if (logs['val_acc']>0.90  or accuracy>=0.90) and logs['acc']>=0.90:
+        if (logs['val_acc']>0.80  or accuracy>=0.80) and logs['acc']>=0.80:
             self.model.stop_training=True
         self.old=val_accuracy
 
