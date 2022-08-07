@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
               model: "assets/human_or_horse.tflite",
               labels: "assets/human_or_horse.txt");
           var output = await Tflite.runModelOnImage(
-              path: result.files.single.path ?? "", numResults: 3);
+              path: result.files.single.path ?? "", numResults: 4);
           setState(() {
             text = output![0]['label'].toString();
           });
@@ -136,9 +136,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   });
                 }),
             Text(text),
-            FloatingActionButton(onPressed: () {
-              method();
-            })
+            FloatingActionButton(
+                child: Icon(Icons.add_a_photo_rounded),
+                onPressed: () {
+                  method();
+                })
           ],
         ),
       ),
